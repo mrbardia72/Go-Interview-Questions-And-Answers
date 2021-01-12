@@ -8,6 +8,8 @@
  <h2 id="-" dir="rtl"> 🌱تایپ های نوع Reference؟</h2>  
  <p>Pointers, slices, maps, functions, and channels</p>
  
-
+ <h2 id="-" dir="rtl"> 🌱تایپ های نوع Aggregate؟</h2>  
+ <p>Array and structs</p>
+ 
 <h2 id="-" dir="rtl"></h2>  
 <p dir="rtl"></p>
