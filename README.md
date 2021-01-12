@@ -3,10 +3,10 @@
 
 
  <h2 id="-" dir="rtl">چه تایپی های مقدار زیرو آن ها نیل هست؟</h2>  
- <p dir="rtl">interfaces, slices, channels, maps, pointers and functions.</p>
+ <p>interfaces, slices, channels, maps, pointers and functions.</p>
  
  <h2 id="-" dir="rtl">تایپ های نوع رفرتس؟</h2>  
- <p dir="rtl">Pointers, slices, maps, functions, and channels</p>
+ <p>Pointers, slices, maps, functions, and channels</p>
  
 
 <h2 id="-" dir="rtl"></h2>  
