@@ -1,4 +1,4 @@
-LOGFILE=$(LOGPATH) `date +'%A-%b-%d-%Y-%H-%M-%S'`
+LOGFILE=$(LOGPATH) `date +'%A-%b-%d-%Y-TIME-%H-%M-%S'`
 
 .PHONY: cm
 cm: ## 🌱 git commit
