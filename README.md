@@ -81,7 +81,7 @@ type echoer struct{
 }
 ```
 Embedding an interface by pointer
-```sh
+```go
 type echoer struct{
     *io.Reader
 }
