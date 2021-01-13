@@ -34,9 +34,12 @@
 * Compilation time is fast
 * InBuilt concurrency support: light-weight processes (via goroutines), channels, select statement
 * Conciseness, Simplicity, and Safety.
+* Production of statically linked native binaries without external dependencies.
 * Support for Interfaces and Type embdding.
 <br>
+
 Embedded
+
 ```go
 type PremiumDiscount struct{
     Discount //Embedded
@@ -88,5 +91,5 @@ type echoer struct{
     *io.Reader
 }
 ```
-* Production of statically linked native binaries without external dependencies.
+
 </p>
