@@ -37,14 +37,14 @@
 * Support for Interfaces and Type embdding.
 <br>
 Embedded
-```sh
+```go
 type PremiumDiscount struct{
     Discount //Embedded
     additional float32
 }
 ```
 by-value
-```sh
+```go
 type Parent struct{
     value int64
 }
@@ -63,7 +63,7 @@ func (i Child) Value() int64{
 }
 ```
 By-Pointer
-```sh
+```go
 type Bitmap struct{
     data [4][4]bool
 }
@@ -75,7 +75,7 @@ type Renderer struct{
 }
 ```
 Embed an interface
-```sh
+```go
 type echoer struct{
     io.Reader
 }
