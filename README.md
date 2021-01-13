@@ -2,9 +2,9 @@
 ![Image of Yaktocat](Go-interview-Questions.jpg)
 
 
- <h2 id="-" dir="rtl"> 🌱چه تایپی های مقدار zero آن ها nil هست؟</h2>  
+ <h2 id="-" dir="rtl" style="color:darkmagenta"> 🌱چه تایپی های مقدار zero آن ها nil هست؟</h2>  
  <p>interfaces, slices, channels, maps, pointers and functions.</p>
- 
+
  <h2 id="-" dir="rtl"> 🌱تایپ های نوع Reference؟</h2>  
  <p>Pointers, slices, maps, functions, and channels</p>
  
@@ -28,5 +28,12 @@
 -گاهی اوقات یک تابع باید بداند که مقدار یک چیزی چیست، همچنین باید وجود یا عدم وجود آن را بداند. معمولا هنگام خواندن JSON از این استفاده می‌کنیم تا بدانیم فیلدی وجود دارد یا خیر.
  </p>
  
-<h2 id="-" dir="rtl"></h2>  
-<p dir="rtl"></p>
+<h2 id="-" dir="rtl">مزایای زبان گولنگ</h2>  
+<p>
+
+* Compilation time is fast
+* InBuilt concurrency support: light-weight processes (via goroutines), channels, select statement
+* Conciseness, Simplicity, and Safety.
+* Support for Interfaces and Type embdding.
+* Production of statically linked native binaries without external dependencies.
+</p>
