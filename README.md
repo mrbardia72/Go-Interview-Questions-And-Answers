@@ -35,5 +35,56 @@
 * InBuilt concurrency support: light-weight processes (via goroutines), channels, select statement
 * Conciseness, Simplicity, and Safety.
 * Support for Interfaces and Type embdding.
+<br>
+Embedded
+```
+type PremiumDiscount struct{
+    Discount //Embedded
+    additional float32
+}
+```
+by-value
+```
+type Parent struct{
+    value int64
+}
+
+func (i *Parent) Value() int64{
+    return i.value
+}
+
+type Child struct{
+    Parent
+    multiplier int64
+}
+
+func (i Child) Value() int64{
+    return i.value * i.multiplier
+}
+```
+By-Pointer
+```
+type Bitmap struct{
+    data [4][4]bool
+}
+
+type Renderer struct{
+    *Bitmap //Embed by pointer
+    on uint8
+    off uint8
+}
+```
+Embed an interface
+```
+type echoer struct{
+    io.Reader
+}
+```
+Embedding an interface by pointer
+```
+type echoer struct{
+    *io.Reader
+}
+```
 * Production of statically linked native binaries without external dependencies.
 </p>
