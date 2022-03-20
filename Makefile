@@ -5,5 +5,5 @@ branch := $(shell git branch --show-current)
 cm: ## 🌱 git commit
 	@echo '************👇  run command 👇************'
 	git add .
-	git commit -m "ggg-${LOGFILE}"
-	git push origin "go-interview-2581"
+	git commit -m "$(branch)-${LOGFILE}"
+	git push origin $(branch)
