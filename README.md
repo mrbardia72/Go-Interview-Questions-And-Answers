@@ -101,6 +101,7 @@ type echoer struct{
 * operator overloading
 * method overloading
 * pointer arithmetic
+* struct type in consts
  </p>
 
  <h2 id="-" dir="rtl"> 🌱 فرق Atomic و mutex؟</h2>  
