@@ -6,4 +6,4 @@ cm: ## 🌱 git commit
 	@echo '************👇  run command 👇************'
 	git add .
 	git commit -m "ggg-${LOGFILE}"
-	git push origin $(branch)
+	git push origin "go-interview-2581"
