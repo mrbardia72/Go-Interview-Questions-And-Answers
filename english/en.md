@@ -1,5 +1,4 @@
 ## 🌱 The advantage of Golang
-
 * InBuilt concurrency support: light-weight processes (via goroutines), channels, select statement
 * Conciseness, Simplicity, and Safety.
 * Production of statically linked native binaries without external dependencies.
@@ -7,7 +6,6 @@
 
 ---
 ## 🌱 Explain Type Assertions in Go
-
 ### Short answer In one line:
 
 * x.(T) asserts that x is not nil and that the value stored in x is of type T.
