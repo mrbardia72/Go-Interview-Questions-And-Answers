@@ -1,8 +1,10 @@
-## 🌱 The advantage of Golang
-* InBuilt concurrency support: light-weight processes (via goroutines), channels, select statement
-* Conciseness, Simplicity, and Safety.
-* Production of statically linked native binaries without external dependencies.
-* Support for Interfaces and Type embdding.
+## 🌱 Q4: What are some advantages of using Go?
+#### Go is an attempt to introduce a new, concurrent, garbage-collected language with fast compilation and the following benefits:
+* It is possible to compile a large Go program in a few seconds on a single computer.
+* Go provides a model for software construction that makes dependency analysis easy and avoids much of the overhead of C-style include files and libraries.
+* Go's type system has no hierarchy, so no time is spent defining the relationships between types. Also, although Go has static types, the language attempts to make types feel lighter weight than in typical OO languages.
+* Go is fully garbage-collected and provides fundamental support for concurrent execution and communication.
+* By its design, Go proposes an approach for the construction of system software on multicore machines.
 
 ---
 ## 🌱 Explain Type Assertions in Go
@@ -63,15 +65,11 @@ Most of the time you won't use panic (you should return an error instead), and y
 ---
 
 ## 🌱 []byte(string) vs []byte(*string)
-[]byte("something") is not a function (or method) call, it's a type conversion.
-
-The type conversion "itself" does not copy the value. Converting a string to a []byte however does, and it needs to, because the result byte slice is mutable, and if a copy would not be made, you could modify / alter the string value (the content of the string) which is immutable, it must be as the Spec: String types section dictates:
-
-Strings are immutable: once created, it is impossible to change the contents of a string.
-
-Note that there are few cases when string <=> []byte conversion does not make a copy as it is optimized "away" by the compiler. These are rare and "hard coded" cases when there is proof an immutable string cannot / will not end up modified.
-
-Such an example is looking up a value from a map where the key type is string, and you index the map with a []byte, converted to string 
+#### []byte("something") is not a function (or method) call, it's a type conversion.
+#### The type conversion "itself" does not copy the value. Converting a string to a []byte however does, and it needs to, because the result byte slice is mutable, and if a copy would not be made, you could modify / alter the string value (the content of the string) which is immutable, it must be as the Spec: String types section dictates:
+#### Strings are immutable: once created, it is impossible to change the contents of a string.
+#### Note that there are few cases when string <=> []byte conversion does not make a copy as it is optimized "away" by the compiler. These are rare and "hard coded" cases when there is proof an immutable string cannot / will not end up modified.
+#### Such an example is looking up a value from a map where the key type is string, and you index the map with a []byte, converted to string 
 ```go
 key := []byte("some key")
 
@@ -152,11 +150,62 @@ bs[0] = bs[1]
 str = string(bs)
 fmt.Println(str)
 ```
----
+## 🌱 Is Go a new language, framework or library?
+#### Go isn't a library and not a framework, it's a new language.
+#### Go is mostly in the C family (basic syntax), with significant input from the Pascal/Modula/Oberon family (declarations, packages). Go does have an extensive library, called the runtime, that is part of every Go program. Although it is more central to the language, Go's runtime is analogous to libc, the C library. It is important to understand, however, that Go's runtime does not include a virtual machine, such as is provided by the Java runtime. Go programs are compiled ahead of time to native machine code.
 
+## 🌱 What is Go?
+#### Go is a general-purpose language designed with systems programming in mind. It was initially developed at Google in year 2007 by Robert Griesemer, Rob Pike, and Ken Thompson. It is strongly and statically typed, provides inbuilt support for garbage collection and supports concurrent programming. Programs are constructed using packages, for efficient management of dependencies. Go programming implementations use a traditional compile and link model to generate executable binaries.
 
+## 🌱 What is static type declaration of a variable in Go?
+#### Static type variable declaration provides assurance to the compiler that there is one variable existing with the given type and name so that compiler proceed for further compilation without needing complete detail about the variable. A variable declaration has its meaning at the time of compilation only, compiler needs actual variable declaration at the time of linking of the program.
 
+## 🌱 What kind of type conversion is supported by Go?
+#### Go is very strict about explicit typing. There is no automatic type promotion or conversion. Explicit type conversion is required to assign a variable of one type to another.
+#### Consider:
+```go
+i := 55      //int
+j := 67.8    //float64
+sum := i + int(j) //j is converted to int
+```
+## 🌱 Why the Go language was created?
+#### Go was born out of frustration with existing languages and environments for systems programming.
+#### Go is an attempt to have:
+* an interpreted, dynamically typed language with
+* the efficiency and safety of a statically typed, compiled language
+* support for networked and multicore computing
+* be fast in compilation
+#### To meet these goals required addressing a number of linguistic issues: an expressive but lightweight type system; concurrency and garbage collection; rigid dependency specification; and so on. These cannot be addressed well by libraries or tools so a new language was born.
 
+## 🌱 Decoding JSON using json.Unmarshal vs json.NewDecoder.Decode
+#### It really depends on what your input is. If you look at the implementation of the Decode method of json.Decoder, it buffers the entire JSON value in memory before unmarshalling it into a Go value. So in most cases it won't be any more memory efficient (although this could easily change in a future version of the language).
+#### So a better rule of thumb is this:
+* Use json.Decoder if your data is coming from an io.Reader stream, or you need to decode multiple values from a stream of data.
+* Use json.Unmarshal if you already have the JSON data in memory.
+* Marshal => String
+* Encode => Stream
+#### For the case of reading from an HTTP request, I'd pick json.Decoder since you're obviously reading from a stream.
+
+## 🌱 Concept: Dynamic Type and Dynamic Value of an Interface Value
+#### Interface values are values whose types are interface types.
+
+#### Each interface value can box a non-interface value in it. The value boxed in an interface value is called the dynamic value of the interface value. The type of the dynamic value is called the dynamic type of the interface value. An interface value boxing nothing is a zero interface value. A zero interface value has neither a dynamic value nor a dynamic type.
+
+#### An interface type can specify zero or several methods, which form the method set of the interface type.
+
+## 🌱 Concept: Concrete Value and Concrete Type of a Value
+#### For a (typed) non-interface value, its concrete value is itself and its concrete type is the type of the value.
+
+#### A zero interface value has neither concrete type nor concrete value. For a non-zero interface value, its concrete value is its dynamic value and its concrete type is its dynamic type.
+
+## 🌱 Fact: Types Which Support or Don't Support Comparisons
+#### Currently (Go 1.19), Go doesn't support comparisons (with the == and != operators) for values of the following types:
+* slice types
+* map types
+* function types
+#### any struct type with a field whose type is incomparable and any array type which element type is incomparable.
+#### Above listed types are called incomparable types. All other types are called comparable types. Compilers forbid comparing two values of incomparable types.
+## 🌱
 
 
 
