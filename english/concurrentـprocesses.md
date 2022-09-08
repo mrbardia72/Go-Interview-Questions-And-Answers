@@ -123,7 +123,10 @@ func (m *Mutex) Unlock()
 [From the docs](https://golang.org/pkg/sync/#RWMutex)
 #### A RWMutex is a reader/writer mutual exclusion lock. The lock can be held by an arbitrary number of readers or a single writer. The zero value for a RWMutex is an unlocked mutex. In other words, readers don't have to wait for each other. They only have to wait for writers holding the lock. A sync.RWMutex is thus preferable for data that is mostly read, and the resource that is saved compared to a sync.Mutex is time.
 
+## 🌱 Is there a difference in Go between a counter using atomic operations and one using a mutex?
 
+#### That said, sticking to atomic.AddInt32 and atomic.LoadInt32 is safe as long as you are just reporting statistical information, and not actually relying on the values carrying any meaning about the state of the different goroutines.
+####  When using the atomic counter, there are no syncronisation events (e.g. mutex lock/unlock, syscalls) which means that the goroutine never yields control. The result of this is that this goroutine starves the thread it is running on, and prevents the scheduler from allocating time to any other goroutines allocated to that thread, this includes ones that increment the counter meaning the counter never reaches 10000000.
 
 
 
