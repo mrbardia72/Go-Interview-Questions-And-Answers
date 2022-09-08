@@ -1,4 +1,4 @@
-## 🌱 what is the difference between RLock() and Lock() in Golang and how they can be used efficiently when we use mutex Lock ?
+## 🌱 Q1: what is the difference between RLock() and Lock() in Golang and how they can be used efficiently when we use mutex Lock ?
 * Lock(): only one go routine read/write at a time by acquiring the lock.
 * RLock(): multiple go routine can read(not write) at a time by acquiring the lock.
 ```go
@@ -105,7 +105,7 @@ func main() {
     <-time.After(time.Second*8)
 }
 ```
-## 🌱 What is the benefit of using RWMutex instead of Mutex?
+## 🌱 Q2: What is the benefit of using RWMutex instead of Mutex?
 #### I am not sure when to use RWMutex and when to use Mutex.
 #### Do you save resources if you use RWMutex instead of Mutex if you do more reads then writes?
 #### I see some people use Mutex all the time no matter what they do, and some use RWMutex and run these methods:
@@ -123,7 +123,7 @@ func (m *Mutex) Unlock()
 [From the docs](https://golang.org/pkg/sync/#RWMutex)
 #### A RWMutex is a reader/writer mutual exclusion lock. The lock can be held by an arbitrary number of readers or a single writer. The zero value for a RWMutex is an unlocked mutex. In other words, readers don't have to wait for each other. They only have to wait for writers holding the lock. A sync.RWMutex is thus preferable for data that is mostly read, and the resource that is saved compared to a sync.Mutex is time.
 
-## 🌱 Is there a difference in Go between a counter using atomic operations and one using a mutex?
+## 🌱 Q3: Is there a difference in Go between a counter using atomic operations and one using a mutex?
 
 #### That said, sticking to atomic.AddInt32 and atomic.LoadInt32 is safe as long as you are just reporting statistical information, and not actually relying on the values carrying any meaning about the state of the different goroutines.
 ####  When using the atomic counter, there are no syncronisation events (e.g. mutex lock/unlock, syscalls) which means that the goroutine never yields control. The result of this is that this goroutine starves the thread it is running on, and prevents the scheduler from allocating time to any other goroutines allocated to that thread, this includes ones that increment the counter meaning the counter never reaches 10000000.
