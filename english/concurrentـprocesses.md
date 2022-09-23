@@ -1,7 +1,7 @@
 ## 🌱 Q1: what is the difference between RLock() and Lock() in Golang and how they can be used efficiently when we use mutex Lock ?
 * Lock(): only one go routine read/write at a time by acquiring the lock.
 * RLock(): multiple go routine can read(not write) at a time by acquiring the lock.
-```go
+```
 package main
 
 import (
@@ -49,7 +49,7 @@ func main() {
 * Map is not thread safe. so "concurrent read/write of Map" can cause error.
 
 ### See following example for more clarification:
-```go
+```
 package main
 
 import (
@@ -109,14 +109,14 @@ func main() {
 #### I am not sure when to use RWMutex and when to use Mutex.
 #### Do you save resources if you use RWMutex instead of Mutex if you do more reads then writes?
 #### I see some people use Mutex all the time no matter what they do, and some use RWMutex and run these methods:
-```go
+```
 func (rw *RWMutex) Lock()
 func (rw *RWMutex) Unlock()
 func (rw *RWMutex) RLock()
 func (rw *RWMutex) RUnlock()
 ```
 #### instead of just:
-```go
+```
 func (m *Mutex) Lock()
 func (m *Mutex) Unlock()
 ```
@@ -128,7 +128,119 @@ func (m *Mutex) Unlock()
 #### That said, sticking to atomic.AddInt32 and atomic.LoadInt32 is safe as long as you are just reporting statistical information, and not actually relying on the values carrying any meaning about the state of the different goroutines.
 ####  When using the atomic counter, there are no syncronisation events (e.g. mutex lock/unlock, syscalls) which means that the goroutine never yields control. The result of this is that this goroutine starves the thread it is running on, and prevents the scheduler from allocating time to any other goroutines allocated to that thread, this includes ones that increment the counter meaning the counter never reaches 10000000.
 
+## 🌱 Q4: five concurrency patterns in Golang
 
+### 1. for-select pattern
+#### This is a fundamental pattern. It is typically used to read data from multiple channels.The select statement looks like switch one, but its behavior is different. All cases are considered simultaneously & have equal chance to be selected. If none of the cases are ready to run, the entire select statement blocks.
+```
+var c1, c2 <-chan int
 
+for { // Either loop infinitely or range over something 
+    select {
+    case <-c1: // Do some work with channels
+    case <-c2:
+    default: // auto run if other cases are not ready
+    }
 
+    // do some work
+}
+```
+### 2. done channel pattern
+#### Goroutine is not garbage collected; hence, it is likely to be leaked.
+```go func() {
+// <operation that will block forever>
+// => Go routine leaks
+}()
+// Do work
+```
+#### To avoid leaking, Goroutine should be cancelled whenever it is told to do. A parent Goroutine needs to send cancellation signal to its child via a read-only channel named done . By convention, it is set as the 1st parameter.
+#### This pattern is also utilized a lot in other patterns.
+``` 
+/child goroutine
+doWork(<-done chan interface {}, other_params) <- terminated chan interface{} {
+    terminated := make(chan interface{}) // to tell outer that it has finished
+    defer close(terminated)
 
+    for {
+        select: {
+            case: //do your work here
+            case <- done:
+                return
+        }
+        // do work here
+    }
+
+    return terminated
+}
+
+// parent goroutine
+done := make(chan interface{})
+terminated := doWork(done, other_args)
+
+// do sth
+// then tell child to stop
+close (done)
+
+// wait for child finish its work
+<- terminated0
+```
+### 3. or-channel pattern
+#### This pattern aims to combine multiple done channels into one agg_done; it means that if one of a done channel is signaled, the whole agg_done channel is also closed. Yet, we do not know number of done channels during runtime in advanced.
+#### or-channel pattern can do so by using goroutine & recursion .
+``` 
+// return agg_done channel
+var or func(channels ... <-chan interface{}) <- chan interface{} 
+
+or = func(channels ...<-chan interface{}) <-chan interface{} {
+    // base cases
+    switch len(channels) { 
+        case 0: return nil
+        case 1: return channels[0]
+    }
+
+    orDone := make(chan interface{})
+
+    go func() {
+        defer close(orDone)
+
+        switch len(channels) {
+            case 2: 
+                select {
+                    case <- channels[0]:
+                    case <- channels[1]:
+                }
+            default:
+                select {
+                    case <- channels[0]:
+                    case <- channels[1]:
+                    case <- channels[2]:
+                    case <- or(append(channels[3:], orDone)...): // * line
+                }
+
+        }
+
+    }
+    return orDone
+}
+
+```
+### 4. tee channel pattern
+#### This pattern aims to split values coming from a channel into 2 others. So that we can dispatch them into two separate areas of our codebase.
+
+### 5. bridge channel pattern
+#### Reading values from channel of channels (<-chan <-chan interface{}) can be cumbersome. Hence, this pattern aims to merge all values into 1 channel, so that the consumer jobs is much easier.
+
+## 🌱 Q5: What Is a Race Condition?
+#### Race conditions are the outcomes of two different concurrent contexts reading and writing to the same shared data at the same time, resulting in an unexpected output. In Golang two concurrent goroutines that access the same variable concurrently will produce a data race in the program
+
+## 🌱 Q6: How to Avoid Race Conditions in Golang?
+
+#### The sync.Mutex package provides a mechanism to guard a block of code, making it concurrency-safe, meaning write operations within that block will be safe. The primitives that the sync package provides allow you to write concurrent code using memory access synchronization to avoid data race conditions.
+
+#### This mechanism constitutes using the Lock and Unlock, methods from the package.
+
+#### The Lock method will establish that the goroutine who calls this method has just acquired the lock and no other goroutines can use the lock until it is released.
+
+#### The Unlock method releases the lock so that other goroutines can use it.
+
+#### When one goroutine is using the lock and another one tries to acquire the lock too, the goroutine will block until the other goroutine releases the lock.
