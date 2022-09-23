@@ -205,8 +205,25 @@ sum := i + int(j) //j is converted to int
 * function types
 #### any struct type with a field whose type is incomparable and any array type which element type is incomparable.
 #### Above listed types are called incomparable types. All other types are called comparable types. Compilers forbid comparing two values of incomparable types.
-## 🌱 Q18:
 
+## 🌱 Q18: Difference of Json Encoding vs Marshaling and json decoding vs UnMarshaling
+#### Don’t let the Golang json.NewEncoder / (json.Encoder).Encode and json.Marshal methods confuse you.
+
+#### They both marshal objects into JSON encoded strings.
+
+#### The difference being the Encoder, first marshals the object to a JSON encoded string, then writes that data to a buffer stream .The Encoder therefore, uses more code and memory overhead than the simpler json.Marshal.
+
+#### Encoding/decoding JSON refers to the process of actually reading/writing the character data to a string or binary form.
+
+#### Marshaling/Un marshaling refers to the process of mapping JSON types from and to Go data types and primitives.
+
+#### In Golang, struct data is converted into JSON using Marshal() and JSON data to string using Un marshal() method.
+
+Encoder and decoder write struct to slice of a stream or read data from a slice of a stream and convert it into a struct. Internally, it also implements the marshal method.
+
+The only difference is if you want to play with string or bytes use marshal, and if any data you want to read or write to some writer interface, use encodes and decode.
+
+## 🌱 Q19: 
 
 
 
