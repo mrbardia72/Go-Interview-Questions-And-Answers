@@ -223,7 +223,24 @@ Encoder and decoder write struct to slice of a stream or read data from a slice 
 
 The only difference is if you want to play with string or bytes use marshal, and if any data you want to read or write to some writer interface, use encodes and decode.
 
-## 🌱 Q19: 
+## 🌱 Q19: what are primitive data types?
+#### Think of primitive data types as atoms. Atoms are the smallest particles in the universe which cannot be further broken. Like atoms, primitive data types also cannot be further broken down. And like atoms, on combining them, we can form complex data types but more on that later.
 
+## 🌱 Q20: Primitive data types in Golang
+#### int, float, byte, string, rune & bool
 
+## 🌱 Q21:What is an enum in Golang?
+#### An enum, or enumerator, is a data type consisting of a set of named constant values. Enums are a powerful feature with a wide range of uses. However, in Golang, they’re implemented quite differently than most other programming languages. In Golang, we use a predeclared identifier, ​iota, and the enums are not strictly typed.
+#### Syntax
+#### A typical enum Direction with four possible values can be defined as:
+```
+type Direction int
+const (
+North Direction = iota
+South
+East
+West
+)
+```
+#### The iota is a built-in, predeclared identifier that represents successive untyped integer constants. Its value is the index of the respective ConstSpec in that constant declaration – it starts at zero.
 
