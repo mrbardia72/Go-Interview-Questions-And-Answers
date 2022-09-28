@@ -244,3 +244,32 @@ West
 ```
 #### The iota is a built-in, predeclared identifier that represents successive untyped integer constants. Its value is the index of the respective ConstSpec in that constant declaration – it starts at zero.
 
+## 🌱 Q22: Mutable Data Type
+#### Mutable data type is a data type which can be modified without reallocating any chunk of the memory assigned at the time of initialization. In simple words, a variable is mutable if its value can be altered without reallocating itself to a new memory space.
+#### In mutable data type the value located in a memory address can be modified. This means we do not have to reallocate any memory or change the pointer of a variable to point to other address in order to change the value of the variable.
+
+## 🌱 Q23: Immutable Data Types
+#### Immutable data type is a data type which cannot be modified without allocating a new memory. So, the immutable data type has to reallocate memory for making changes to the value of a variable. This might be a downside if the variable is holding a large sets of values, it will require a lot of memory re-allocation for a slight change in the value.
+#### Immutable data types also mean that you cannot change the value in the memory address which the variable is pointing to, but you can make the variable point to a different memory location under the hood to change or modify the content of a variable.
+
+## 🌱 Q24:In golang there are a few mutable data types
+* #### Slice
+#### Slice and Arrays are mutable data types in golang, this means the value of the elements in slice or array can be changed after initialization without re-allocations of memory.
+* #### Array
+#### You won't be able to see the concept of mutable data types with arrays as they are not referenced to any memory address, it is a collection of a single type of value and it is thus static. Since it is not a reference to any memory address, the value of the elements doesn't change if we change the value of an element in the copy of the array.
+* #### Map
+#### Map is similar to slices in a way they are references to the memory address. A map as we have explored in the seventh part of the series], they are a pair of key and value pairs. The map is internally a reference to a hash map, a hash map is an abstract data type or a structure in Golang, it basically is an array of buckets. Buckets contain high-order bits with a hash(random value) to make the keys distinct in the map. The number of buckets is initially 8, but it expands as required so it doubles the number of buckets and assigns the value to the map elements
+* #### Channels
+
+## 🌱 Q25:In golang there are a few immutable data types
+* #### Boolean, Int, Float
+#### The boolean data type on golang is an immutable data type which means it re-allocates the memory for any change in the value of the boolean variable. Boolean variables are simple as they can have two values either true or false . If we declare a boolean variable initialize it with a value, if we further wanted to change the value of the variable, it is done by reallocating the memory address which was initially holding the value.
+* #### Pointers
+#### Pointer as well is an immutable data type in golang, we cannot change the value in this case the memory address of a variable which we are pointing to, directly but we need to re-allocate the memory for changing the value of the variable.
+* #### String
+#### Strings are the classical example of immutable data types in golang, this data type is quite commonly used and is quite important for creating a wide variety of applications. The value of the string variable can be changed but the process happens with/without changing the value of the memory address of the initial value, we have to change the memory address of the variable in order to change the value. This might not be evident by even using &variable_name as it doesn't give the actual insight about the internal working of how the memory address might be processed at run time.
+* #### Interfaces
+## 🌱 Q26:
+
+## 🌱 Q27:
+
