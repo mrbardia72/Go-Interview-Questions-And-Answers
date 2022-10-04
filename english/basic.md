@@ -269,7 +269,14 @@ West
 * #### String
 #### Strings are the classical example of immutable data types in golang, this data type is quite commonly used and is quite important for creating a wide variety of applications. The value of the string variable can be changed but the process happens with/without changing the value of the memory address of the initial value, we have to change the memory address of the variable in order to change the value. This might not be evident by even using &variable_name as it doesn't give the actual insight about the internal working of how the memory address might be processed at run time.
 * #### Interfaces
-## 🌱 Q26:
+## 🌱 Q26:What Is the Meaningfulness of Type Embedding?
+#### The main purpose of type embedding is to extend the functionalities of the embedded types into the embedding type, so that we don't need to re-implement the functionalities of the embedded types for the embedding type.
+
+#### Many other object-oriented programming languages use inheritance to achieve the same goal of type embedding. Both mechanisms have their own benefits and drawbacks.
+
+#### If a type T inherits another type, then type T obtains the abilities of the other type. At the same time, each value of type T can also be viewed as a value of the other type.
+
+#### If a type T embeds another type, then type other type becomes a part of type T, and type T obtains the abilities of the other type, but none values of type T can be viewed as values of the other type.
 
 ## 🌱 Q27:
 
