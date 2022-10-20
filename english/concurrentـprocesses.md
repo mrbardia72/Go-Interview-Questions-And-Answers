@@ -106,23 +106,22 @@ func main() {
 }
 ```
 ## 🌱 Q2: What is the benefit of using RWMutex instead of Mutex?
-#### I am not sure when to use RWMutex and when to use Mutex.
-#### Do you save resources if you use RWMutex instead of Mutex if you do more reads then writes?
-#### I see some people use Mutex all the time no matter what they do, and some use RWMutex and run these methods:
+*  RWMutex:
 ```
 func (rw *RWMutex) Lock()
 func (rw *RWMutex) Unlock()
 func (rw *RWMutex) RLock()
 func (rw *RWMutex) RUnlock()
 ```
-#### instead of just:
+*  Mutex:
 ```
 func (m *Mutex) Lock()
 func (m *Mutex) Unlock()
 ```
-[From the docs](https://golang.org/pkg/sync/#RWMutex)
-#### A RWMutex is a reader/writer mutual exclusion lock. The lock can be held by an arbitrary number of readers or a single writer. The zero value for a RWMutex is an unlocked mutex. In other words, readers don't have to wait for each other. They only have to wait for writers holding the lock. A sync.RWMutex is thus preferable for data that is mostly read, and the resource that is saved compared to a sync.Mutex is time.
 
+*  A RWMutex is a reader/writer mutual exclusion lock. The lock can be held by an arbitrary number of readers or a single writer. The zero value for a RWMutex is an unlocked mutex. In other words, readers don't have to wait for each other. They only have to wait for writers holding the lock. A sync.RWMutex is thus preferable for data that is mostly read, and the resource that is saved compared to a sync.Mutex is time.
+#### why we need RWMutex?
+ the problem is, that when using Mutex the value from the memory will be locked until the Unlock method will be invoked. This is also valable for the reading phase. In order to make reading accessible for multiple threads, the Mutex can be replaced with RWMutex, and for reading it will be used RLock and RUnlock methods.
 ## 🌱 Q3: Is there a difference in Go between a counter using atomic operations and one using a mutex?
 
 #### That said, sticking to atomic.AddInt32 and atomic.LoadInt32 is safe as long as you are just reporting statistical information, and not actually relying on the values carrying any meaning about the state of the different goroutines.
