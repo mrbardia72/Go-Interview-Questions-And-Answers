@@ -122,11 +122,52 @@ func (m *Mutex) Unlock()
 *  A RWMutex is a reader/writer mutual exclusion lock. The lock can be held by an arbitrary number of readers or a single writer. The zero value for a RWMutex is an unlocked mutex. In other words, readers don't have to wait for each other. They only have to wait for writers holding the lock. A sync.RWMutex is thus preferable for data that is mostly read, and the resource that is saved compared to a sync.Mutex is time.
 #### why we need RWMutex?
  the problem is, that when using Mutex the value from the memory will be locked until the Unlock method will be invoked. This is also valable for the reading phase. In order to make reading accessible for multiple threads, the Mutex can be replaced with RWMutex, and for reading it will be used RLock and RUnlock methods.
-## 🌱 Q3: Is there a difference in Go between a counter using atomic operations and one using a mutex?
+## 🌱 Q3: Is there any difference between "mutex" and "atomic operation"?
+A mutex is a data structure that enables you to perform mutually exclusive actions. An atomic operation, on the other hand, is a single operation that is mutually exclusive, meaning no other thread can interfere with it.
 
-#### That said, sticking to atomic.AddInt32 and atomic.LoadInt32 is safe as long as you are just reporting statistical information, and not actually relying on the values carrying any meaning about the state of the different goroutines.
-####  When using the atomic counter, there are no syncronisation events (e.g. mutex lock/unlock, syscalls) which means that the goroutine never yields control. The result of this is that this goroutine starves the thread it is running on, and prevents the scheduler from allocating time to any other goroutines allocated to that thread, this includes ones that increment the counter meaning the counter never reaches 10000000.
+Many programming languages provide classes with names like “lock” or “mutex” and a lock method. One thread then calls lock on an object of this class to acquire it and no other thread can acquire the lock unless the original thread has called release.
 
+These are examples of mutexes but some authors use the term “mutex” in a more general way.
+
+When you say that an operation is atomic, for example writing a variable, you mean that one thread writes the variable and no other thread can write it unless the first thread has finished.
+
+To summarise, mutex usually refers to a datastructure or the general concept of mutual exclusion and atomic operation means that a single operation cannot be interfered with.
+***********************************
+An atomic operation is one that cannot be subdivided into smaller parts. As such, it will never be halfway done, so you can guarantee that it will always be observed in a consistent state. For example, modern hardware implements atomic compare-and-swap operations.
+
+A mutex (short for mutual exclusion) excludes other processes or threads from executing the same section of code (the critical section). Basically, it ensures that at most one thread is executing a given section of code. A mutex is also called a lock.
+
+Underneath the hood, locks must be implemented using hardware somehow, and the implementation must make use of the atomicity guarantees of the underlying hardware.
+
+Most nontrivial operations cannot be made atomic, so you must either use a lock to block other threads from operating while the critical section executes, or else you must carefully design a lock-free algorithm that ensures that all the critical state-changing operations can be safely implemented using atomic operations.
+
+This is a very deep subject, and there is a large body of literature on all these topics. The Wikipedia links I've given are a good starting point, but since you're taking a class on operating systems right now, it might be best for you to ask your professor to provide good resources for learning and understanding this stuff.
+***********************************
+### for example
+Mutex
+
+A mutex is like the key to a bathroom at a small business. Only one person ever has the key, so if some other person comes along they'll likely have to wait. Here's the rubs:
+* If someone walks off with the key, then the waiting person never stops waiting.
+* Nothing can stop some other process from making its own door to the bathroom.
+
+In the context of code, a mutex is mostly the key part, and the person is a process.
+
+### Atomic
+
+Atomic means something that can't be split into smaller steps. In the natural world there is no CPU clock -- so everything we do could be smaller steps -- but let's pretend...
+
+When you're typing on your keyboard, every key you hit is an atomic action. It happens all at once, and you can not hit two keys at exactly the same time. Here's what's good about this:
+* No waiting: the fact that no two keys are being hit at the same time is not because one has to wait. It's because one is always done by the time the next gets there.
+* No collision: no matter how much you hammer away, you'll never get two characters overlaid. One always happens before the other, completely.
+  
+For a counter example, if you were trying to type two words at the same time, that would be not atomic. The letters would mix up.
+
+In the context of code, hitting keys is the same as running a single CPU command. It doesn't matter what other commands are in queue, the one your are doing will finish in its entirety before the next happens.
+
+If you can do something atomically, then you don't have to worry about collision. But not everything is feasible within these bounds. Generally, atomics are for really low level operations -- like getting and setting an primitive (int, boolean, etc). For anything that's going to run a bunch of CPU commands but wants to be atomic, there's a couple tricks:
+
+* Use a mutex. Kind of cheating, not really atomic. But some things do this and call themselves atomic.
+* Carefully writing code such that it never requires more than one concurrent instruction on a piece of data in a row to remain correct. This one gets a bit deeper, but sometimes it can be done.
 ## 🌱 Q4: five concurrency patterns in Golang
 
 ### 1. for-select pattern
