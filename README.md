@@ -6,6 +6,7 @@
 - English
   - [Concurrent Processes](english/concurrentـprocesses.md)
   - [Basic](english/basic.md)
+  - [Build](english/build.md)
 
 ## How to become a Golang developer: 6 step career guide
 ### This career guide at a glance:
