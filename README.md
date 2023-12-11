@@ -2,11 +2,10 @@
 ![Image of Yaktocat](Go-interview-Questions.jpg)
 
 ### 🚀 Golang Interview Questions and Answers 👋
-- [Persian](persian/fa.md)
-- English
-  - [Concurrent Processes](english/concurrentـprocesses.md)
-  - [Basic](english/basic.md)
-  - [Build](english/build.md)
+- persian
+  - [Data Type](persian/data_type.md)
+  - [Concurrency](persian/concurrency.md)
+
 
 ## How to become a Golang developer: 6 step career guide
 ### This career guide at a glance:
