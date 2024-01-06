@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c49ea88a-75d4-4a38-ba35-7d2ea3f89825" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/best-practice/golang.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/roadmap/golang.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SECURITY.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/persian/concurrency.md" beforeDir="false" afterPath="$PROJECT_DIR$/interview/persian/concurrency.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/persian/data_type.md" beforeDir="false" afterPath="$PROJECT_DIR$/interview/persian/data_type.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interview/persian/concurrency.md" beforeDir="false" afterPath="$PROJECT_DIR$/interview/persian/concurrency.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interview/persian/data_type.md" beforeDir="false" afterPath="$PROJECT_DIR$/interview/persian/data_type.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,9 +55,15 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/roadmap/persian" />
+      <recent name="$PROJECT_DIR$/best-practice/persian" />
+      <recent name="$PROJECT_DIR$/interview" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration default="true" type="OPA_RUN_CONFIGURATION" factoryName="Opa configuration factory">
-      <option name="query" value="" />
+    <configuration default="true" type="OPA_TEST_RUN_CONFIGURATION" factoryName="Opa configuration factory">
       <option name="additionalargs" value="" />
       <envs />
       <method v="2" />
