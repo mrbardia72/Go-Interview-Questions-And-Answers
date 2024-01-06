@@ -1,5 +1,5 @@
 # Golang Interview Questions and Answers
-![Image of Yaktocat](Go-interview-Questions.jpg)
+![Image of Yaktocat](img.png)
 
 ### 🚀 Golang Interview Questions and Answers
 - persian
