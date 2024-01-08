@@ -19,7 +19,7 @@
 - persian
   - [Golang](software-engineer/persian/software_engineer.md)
 
-> [!NOTE]
+> [!NOTE Golang Interview Questions and Answers]
 > Useful information that users should know, even when skimming content.
 
 > [!TIP]
