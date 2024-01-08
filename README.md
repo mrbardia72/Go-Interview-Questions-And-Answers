@@ -17,4 +17,4 @@
 
 ### 🚀 Software Engineer
 - persian
-  - [Golang](roadmap/persian/golang.md)
+  - [Golang](software-engineer/persian/software_engineer.md)
