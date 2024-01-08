@@ -14,3 +14,7 @@
 ### 🚀 Golang Roadmap
 - persian
   - [Golang](roadmap/persian/golang.md)
+
+### 🚀 Software Engineer
+- persian
+  - [Golang](roadmap/persian/golang.md)
