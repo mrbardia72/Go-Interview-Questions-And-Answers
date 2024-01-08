@@ -5,6 +5,7 @@
 - persian
   - [Data Type](interview/persian/data_type.md)
   - [Concurrency](interview/persian/concurrency.md)
+  - [Concurrency Patterns](interview/persian/concurrency_patterns.md)
 
 ### 🚀 Golang Best Practice
 - persian
