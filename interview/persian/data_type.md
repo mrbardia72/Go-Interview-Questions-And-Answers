@@ -156,6 +156,17 @@ Error handling در Go اغلب از طریق بازگرداندن ارور از
  </p>
 
 ---
+ <h2  dir="rtl"> 🌱 چرا باید از interface استفاده کنیم؟  </h2>  
+ <p dir="ltr">
+ To help reduce duplication or boilerplate code. 
+
+ To make it easier to use mocks instead of real objects in unit tests.
+
+ As an architectural tool, to help enforce decoupling between parts of your codebase.
+
+ </p>
+
+---
  <h2  dir="rtl"> 🌱   </h2>  
  <p  dir="rtl">
 جواب 
