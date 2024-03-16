@@ -121,6 +121,64 @@ func ReadAndWrite(rw ReadWriter) {
  </p>
 ---
 
+ <h2  dir="rtl"> 🌱 برای درک بهتر نحوه استفاده از رابط ها در Go، بیایید نگاهی به چند نمونه از بسته های محبوب Go بیندازیم.  </h2>  
+ <p  dir="ltr">
+1. http.Handler interface
+
+```go
+type Handler interface {
+    ServeHTTP(ResponseWriter, *Request)
+}
+```
+
+2. io.Reader and io.Writer interfaces
+
+```go
+type Reader interface {
+    Read(p []byte) (n int, err error)
+}
+
+type Writer interface {
+    Write(p []byte) (n int, err error)
+}
+```
+
+3. database/sql/driver interfaces
+
+```go
+type Driver interface {
+    Open(name string) (Conn, error)
+}
+```
+
+4. sort.Interface interface
+
+```go
+type Interface interface {
+    Len() int
+    Less(i, j int) bool
+    Swap(i, j int)
+}
+```
+
+5. flag.Value interface
+
+```go
+type Value interface {
+    String() string
+    Set(string) error
+}
+```
+
+
+
+
+
+
+ </p>
+
+---
+
  <h2  dir="rtl"> 🌱   </h2>  
  <p  dir="rtl">
 جواب 
