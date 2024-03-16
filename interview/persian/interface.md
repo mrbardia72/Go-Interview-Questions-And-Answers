@@ -170,15 +170,38 @@ type Value interface {
 }
 ```
 
-
-
-
-
-
  </p>
 
 ---
 
+ <h2  dir="rtl"> 🌱 فرق بین interface embedding و Interface composition در چیست  </h2>  
+ <p  dir="ltr">
+1- Interface Embedding:
+
+Interface embedding refers to embedding one interface into another interface.
+
+In Go, you can embed an interface as a method set within another interface, allowing the embedding interface to inherit the methods of the embedded interface.
+
+The embedding interface gains all the methods of the embedded interface, and it can also define additional methods.
+
+The embedding interface acts as a superset of the embedded interface, providing a way to extend or specialize the behavior of the embedded interface.
+
+The embedded interface’s methods can be directly accessed through the embedding interface, without the need for explicit forwarding or delegation. 
+
+2- Interface Composition:
+
+Interface composition refers to combining multiple interfaces into a single interface.
+
+With interface composition, you define a new interface that includes multiple existing interfaces as embedded types.
+
+The composed interface combines the method sets of the embedded interfaces, creating a unified set of methods.
+
+The composed interface can be used to interact with any object that implements all the embedded interfaces.
+
+Interface composition provides a way to define more specific, higher-level interfaces by combining existing interfaces.
+ </p>
+
+---
  <h2  dir="rtl"> 🌱   </h2>  
  <p  dir="rtl">
 جواب 
