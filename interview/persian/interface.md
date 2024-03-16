@@ -73,9 +73,14 @@ func PrintAndScan(ps PrinterScanner) {
 
  <h2  dir="rtl"> 🌱  اینترفیس Composition چیست </h2>  
  <p  dir="ltr">
-In addition to interface embedding, Go also supports interface composition. 
+1- In addition to interface embedding, Go also supports interface composition. 
 Interface composition allows you to create
 a new interface by combining two or more existing interfaces.
+
+2- Interface composition involves creating a new interface by combining multiple existing interfaces. 
+This approach allows you to define a new interface that incorporates the behavior of the individual interfaces it 
+comprises. In other words, it is a way of combining multiple interfaces to create a more specific or comprehensive 
+interface.
 
 ```go
 type Reader interface {
