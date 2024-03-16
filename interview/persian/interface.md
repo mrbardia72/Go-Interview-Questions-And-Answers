@@ -199,6 +199,19 @@ The composed interface combines the method sets of the embedded interfaces, crea
 The composed interface can be used to interact with any object that implements all the embedded interfaces.
 
 Interface composition provides a way to define more specific, higher-level interfaces by combining existing interfaces.
+
+3- Differences:
+
+Interface composition involves combining multiple interfaces to create a new interface with a specific set of behaviors.
+
+Interface embedding is a way of inheriting methods from an embedded interface and extending it with additional methods.
+
+Interface composition creates a new interface that includes the behaviors of the composed interfaces, while interface embedding
+allows one interface to inherit the methods of another interface.
+
+Interface composition is typically used when you want to define a higher-level interface that combines multiple 
+behaviors, while interface embedding is used to extend an existing interface with additional methods.
+
  </p>
 
 ---
