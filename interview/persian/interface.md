@@ -28,6 +28,56 @@ Go ارث بری را پیاده‌سازی نمی‌کند زیرا می‌تو
 
 ---
 
+ <h2  dir="rtl"> 🌱  اینترفیس Embedding چیست </h2>  
+ <p  dir="ltr">
+In addition to defining standalone interfaces, Go also allows you to embed interfaces within other interfaces. 
+This is called interface embedding, and it provides a powerful way to compose interfaces. 
+
+```go
+type Printer interface {
+    Print()
+}
+
+type Scanner interface {
+    Scan()
+}
+
+type PrinterScanner interface {
+    Printer
+    Scanner
+}
+
+type PrinterScannerImpl struct {}
+
+func (ps PrinterScannerImpl) Print() {
+    fmt.Println("Printing")
+}
+
+func (ps PrinterScannerImpl) Scan() {
+    fmt.Println("Scanning")
+}
+
+func main() {
+    ps := PrinterScannerImpl{}
+    PrintAndScan(ps)
+}
+
+func PrintAndScan(ps PrinterScanner) {
+    ps.Print()
+    ps.Scan()
+}
+```
+</p>
+
+---
+
+ <h2  dir="rtl"> 🌱   </h2>  
+ <p  dir="rtl">
+جواب 
+ </p>
+
+---
+
  <h2  dir="rtl"> 🌱   </h2>  
  <p  dir="rtl">
 جواب 
