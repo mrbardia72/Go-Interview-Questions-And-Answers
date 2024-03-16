@@ -30,8 +30,12 @@ Go ارث بری را پیاده‌سازی نمی‌کند زیرا می‌تو
 
  <h2  dir="rtl"> 🌱  اینترفیس Embedding چیست </h2>  
  <p  dir="ltr">
-In addition to defining standalone interfaces, Go also allows you to embed interfaces within other interfaces. 
+1- In addition to defining standalone interfaces, Go also allows you to embed interfaces within other interfaces. 
 This is called interface embedding, and it provides a powerful way to compose interfaces. 
+
+2- Interface embedding, also known as interface inheritance, is a mechanism in which one interface is embedded within 
+another interface. This allows the embedding interface to inherit the methods of the embedded interface, effectively 
+extending its behavior.
 
 ```go
 type Printer interface {
