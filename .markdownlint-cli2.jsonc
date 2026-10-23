@@ -5,6 +5,9 @@
     "MD012": false,
     "MD013": false,
     "MD033": false,
+    "MD009":false,
+    "MD022":false,
+    "MD032":false,
     "MD041": false
   },
   "globs": [
