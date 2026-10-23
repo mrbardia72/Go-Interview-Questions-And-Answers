@@ -9,6 +9,9 @@
     "MD022":false,
     "MD032":false,
     "MD041": false,
+    "MD026": {
+          "punctuation": ".,;!。，；！"
+        },
     "MD024": {
           "siblings_only": true
         }
